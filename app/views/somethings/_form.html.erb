@@ -1,0 +1,28 @@
+<%= form_for @something, :html => {:multipart => true} do |f| %>
+  <% if @something.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@something.errors.count, "error") %> prohibited this something from being saved:</h2>
+
+      <ul>
+      <% @something.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div id="inputs">
+    <%= f.label :name %>:
+    <%= f.text_field :name %><br>
+    <%= f.label :email %>:
+    <%= f.text_field :email %><br>
+    <%= f.label :title %>:
+    <%= f.text_field :title %><br>
+    <%= f.label :description %>:
+    <%= f.text_area :description %><br>
+    <%= f.label :something %>:
+    <%= f.file_field :something %><br>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
