@@ -7,8 +7,8 @@ gem 'rails', '3.0.3'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'carrierwave'
-gem 'rmagick', :require => 'RMagick'
-
+gem 'rmagick', '~>2.13.1', :require => 'RMagick'
+gem 'jquery-rails'
 # Use unicorn as the web server
 # gem 'unicorn'
 

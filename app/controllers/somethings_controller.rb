@@ -35,16 +35,22 @@ class SomethingsController < ApplicationController
   # GET /somethings/1/edit
   def edit
     @something = Something.find(params[:id])
+    
+    # redirect if you're trying to edit someone else's work
+    if @something.ip_address != request.remote_ip
+      redirect_to(somethings_url)
+    end
   end
 
   # POST /somethings
   # POST /somethings.xml
   def create
     @something = Something.new(params[:something])
+    @something.ip_address = request.remote_ip
     @something.something = params[:something][:something]
     respond_to do |format|
       if @something.save
-        format.html { redirect_to(@something, :notice => 'Something was successfully created.') }
+        format.html { redirect_to(@something, :notice => 'Your shoelace was successfully created.') }
         format.xml  { render :xml => @something, :status => :created, :location => @something }
       else
         format.html { render :action => "new" }
@@ -60,11 +66,9 @@ class SomethingsController < ApplicationController
 
     respond_to do |format|
       if @something.update_attributes(params[:something])
-        format.html { redirect_to(@something, :notice => 'Something was successfully updated.') }
-        format.xml  { head :ok }
+        redirect_to(@something, :notice => 'Your shoelace was updated.')
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @something.errors, :status => :unprocessable_entity }
+        render :action => "edit"
       end
     end
   end
@@ -75,9 +79,6 @@ class SomethingsController < ApplicationController
     @something = Something.find(params[:id])
     @something.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(somethings_url) }
-      format.xml  { head :ok }
-    end
+    redirect_to somethings_url
   end
 end

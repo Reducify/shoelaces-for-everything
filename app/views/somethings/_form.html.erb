@@ -1,3 +1,4 @@
+<% edit = nil if local_assigns[:edit].nil? %>
 <%= form_for @something, :html => {:multipart => true} do |f| %>
   <% if @something.errors.any? %>
     <div id="error_explanation">
@@ -11,18 +12,29 @@
     </div>
   <% end %>
   <div id="inputs">
-    <%= f.label :name %>:
-    <%= f.text_field :name %><br>
-    <%= f.label :email %>:
-    <%= f.text_field :email %><br>
-    <%= f.label :title %>:
-    <%= f.text_field :title %><br>
-    <%= f.label :description %>:
-    <%= f.text_area :description %><br>
-    <%= f.label :something %>:
-    <%= f.file_field :something %><br>
+    <%#= f.label :email %>
+    <%#= f.text_field :email %>
+    <%#= f.label :description %>
+    <%#= f.text_area :description %>
+    <% if edit %>
+      <%= f.label :something, 'Choose an image to replace' %>:
+    <% else %>
+      <%= f.label :something, 'Choose an image' %>:
+    <% end %>
+    <br><%= f.file_field :something %>
+    <div id="imageError" class="error"><br><span></span></div>
+    <br><br>
+    <%= f.label :title, 'This is a picture of' %>:
+    <br><%= f.text_field :title, :class => 'text' %>
+    <br><span class="example">e.g. cars, a banana split, canoeing</span>
+    <div id="titleError" class="error"><br><span></span></div>
+    <br><br>
+    <%= f.label :name, 'What\'s your name? (optional)' %>
+    <br><%= f.text_field :name, :class => 'text' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <a href="#" class="button formSubmit">Create Your Shoelace</a>
+    <%= link_to 'Cancel', somethings_path, :class => 'cancel' %>
+    <%= f.submit :style => 'display: none' %>
   </div>
 <% end %>
