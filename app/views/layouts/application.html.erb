@@ -8,7 +8,7 @@
           less.env = 'development';
           less.watch();
       </script>
-      <style type="text/css">body{background: #<%= "%06x" % (rand * 0xffffff) %>;}</style>
+      <%= background %>
       <%= javascript_include_tag 'plupload.full.min.js' %>
       <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js' %>
       <%= javascript_include_tag 'application' %>
