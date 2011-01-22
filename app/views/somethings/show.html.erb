@@ -6,6 +6,7 @@
       <%= link_to 'Edit', edit_something_path(@something) %>&nbsp;|&nbsp;
     <% end %>
     <%= link_to 'Back', somethings_path %>
+    &nbsp;|&nbsp;by <%= @something.name ? @something.name : 'anon' %>
   </div>
   <div class="outer">
     <%= image_tag @something.something.url, :class => 'inner' %>

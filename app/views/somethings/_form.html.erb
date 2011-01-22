@@ -12,10 +12,10 @@
     </div>
   <% end %>
   <div id="inputs">
-    <%#= f.label :name %>
-    <%#= f.text_field :name %>
     <%#= f.label :email %>
     <%#= f.text_field :email %>
+    <%#= f.label :description %>
+    <%#= f.text_area :description %>
     <% if edit %>
       <%= f.label :something, 'Choose an image to replace' %>:
     <% else %>
@@ -29,8 +29,8 @@
     <br><span class="example">e.g. cars, a banana split, canoeing</span>
     <div id="titleError" class="error"><br><span></span></div>
     <br><br>
-    <%#= f.label :description %>
-    <%#= f.text_area :description %>
+    <%= f.label :name, 'What\'s your name? (optional)' %>
+    <br><%= f.text_field :name, :class => 'text' %>
   </div>
   <div class="actions">
     <a href="#" class="button formSubmit">Create Your Shoelace</a>

@@ -14,6 +14,7 @@
         <% if something.ip_address == request.remote_ip %>
           &nbsp;|&nbsp;<%= link_to 'Edit', edit_something_path(something) %>&nbsp;|&nbsp;<a href="#" class="delete" data-id="<%= something.id %>">Delete</a>
         <% end %>
+        &nbsp;|&nbsp;by <%= something.name ? something.name : 'anon' %>
       </div>
     </div>
   <% end %>
