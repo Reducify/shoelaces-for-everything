@@ -6,11 +6,14 @@
     <div class="somethingWrapper">
       <h2>Shoelaces For <%= something.title %></h2>
       <div class="thumb">
-        <%#= image_tag something.something.url %>
+        <%= image_tag something.something.url %>
       </div>
       <div class="controls">
-        <%= link_to 'Bigger', something %>&nbsp;|&nbsp;<%= link_to 'Edit', edit_something_path(something) %>&nbsp;|&nbsp;<a href="#" class="delete" data-id="<%= something.id %>">Delete</a>
-        <%#= link_to 'Destroy', something, :confirm => 'Are you sure?', :method => :delete %>
+        <%= link_to 'Bigger', something %>
+        <%# show the edit and delete links if you made it %>
+        <% if something.ip_address == request.remote_ip %>
+          &nbsp;|&nbsp;<%= link_to 'Edit', edit_something_path(something) %>&nbsp;|&nbsp;<a href="#" class="delete" data-id="<%= something.id %>">Delete</a>
+        <% end %>
       </div>
     </div>
   <% end %>

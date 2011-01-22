@@ -35,12 +35,18 @@ class SomethingsController < ApplicationController
   # GET /somethings/1/edit
   def edit
     @something = Something.find(params[:id])
+    
+    # redirect if you're trying to edit someone else's work
+    if @something.ip_address != request.remote_ip
+      redirect_to(somethings_url)
+    end
   end
 
   # POST /somethings
   # POST /somethings.xml
   def create
     @something = Something.new(params[:something])
+    @something.ip_address = request.remote_ip
     @something.something = params[:something][:something]
     respond_to do |format|
       if @something.save
