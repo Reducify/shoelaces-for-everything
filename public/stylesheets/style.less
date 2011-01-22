@@ -45,6 +45,7 @@ body, html{
   font-family: helvetica, arial, sans-serif;
 //  background: #416672;
 // 5a8696
+// a5869c
 }
 
 h1{
@@ -53,6 +54,7 @@ h1{
   font-size: 40px;
   font-family: 'FeaturedItem', helvetica, arial, sans-serif;
   color: @main;
+  text-shadow: 0 -1px rgba(0,0,0,0.2), 0 1px rgba(255,255,255,0.3);
 }
 
 a{color: @shoeblack;}
@@ -80,6 +82,54 @@ a:hover, a:active{color: @main - 60%;}
 }
 
 #logo{margin: 30px 0 0 0;}
+
+/* ========= */
+/* = Flash = */
+/* ========= */
+
+// on most pages, fix it to the top
+#bodyFlash{
+  display: none;
+  position: fixed;
+  -moz-box-shadow: 0px 0px 4px #000; /* FF3.5+ */
+  -webkit-box-shadow: 0px 0px 4px #000; /* Saf3.0+, Chrome */
+  box-shadow: 0px 0px 4px #000; /* Opera 10.5, IE 9 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 7px 0;
+  text-align: center;
+  letter-spacing: 0.07em;
+  color: #fff;
+  text-shadow: 0px -1px 0px rgba(44,44,44,0.3), 0px 1px 0px rgba(255,255,255,0.4);
+  z-index: 999;
+}
+
+.flashNotice{
+  @start: #0EA90E;
+  @end: @start - 20%;
+
+  background: @start; // Non CSS3 browsers
+  background: -moz-linear-gradient(top,  @start, @end); // FF 3.6+
+  background: -webkit-gradient(linear, left top, left bottom, from(@start), to(@end)); // Safari 4+, Chrome
+
+  border: 2px solid @start - 30%;
+  border-width: 0 0 2px 0;
+}
+
+.flashError{
+  @start: #ff0000;
+  @end: @start - 20%;
+
+  background: @start; // Non CSS3 browsers
+  background: -moz-linear-gradient(top,  @start, @end); // FF 3.6+
+  background: -webkit-gradient(linear, left top, left bottom, from(@start), to(@end)); // Safari 4+, Chrome
+
+  border: 2px solid @start - 30%;
+  border-width: 0 0 2px 0;
+}
+
 
 // big ol' button style
 
@@ -205,7 +255,6 @@ h2{
 
 #show{
   h1{
-    text-shadow: 0 -1px rgba(0,0,0,0.2), 0 1px rgba(255,255,255,0.3);
     margin: 40px 0 0 0;
     width: 100%;
     text-align: center;
@@ -216,4 +265,34 @@ h2{
 
 
 
-form{.floatClear;}
+form{
+  .floatClear;
+  text-shadow: 0 1px rgba(255,255,255,0.3);
+
+  .text{
+    font-size: 25px;
+    padding: 3px;
+  }
+
+  .example{
+    font-size: 16px;
+    color: #666;
+    font-style: oblique;
+    position: relative;
+    top: 3px;
+  }
+  
+  // submit
+  .button{margin: 20px 0 0 0;}
+  
+  .cancel{
+    position: relative;
+    top: 35px;
+    left: 15px;
+  }
+  
+  .error{
+    color: #f00;
+    display: none;
+  }
+}
