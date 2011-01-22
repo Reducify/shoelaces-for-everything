@@ -75,9 +75,10 @@ class SomethingsController < ApplicationController
     @something = Something.find(params[:id])
     @something.destroy
 
-    respond_to do |format|
-      format.html { redirect_to(somethings_url) }
-      format.xml  { head :ok }
-    end
+    # respond_to do |format|
+      # format.html { redirect_to(somethings_url) }
+      # format.xml  { head :ok }
+    # end
+    redirect_to '/somethings'
   end
 end

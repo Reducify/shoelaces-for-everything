@@ -9,16 +9,17 @@
           less.watch();
       </script>
       <style type="text/css">body{background: #<%= "%06x" % (rand * 0xffffff) %>;}</style>
-      <%= javascript_include_tag :defaults %>
+      <%#= javascript_include_tag :defaults %>
       <%= javascript_include_tag 'plupload.full.min.js' %>
       <%= javascript_include_tag 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js' %>
+      <%= javascript_include_tag 'application' %>
       <%= csrf_meta_tag %>
   </head>
   <body>
     <div class="centered">
       <div id="bg">
-        <div id="logo">
-          <img src="/images/logo.png">
+        <div id="logo" class="outer">
+          <%= image_tag 'logo2.png', :class => 'inner' %>
         </div>
         <%= yield %>
       </div>

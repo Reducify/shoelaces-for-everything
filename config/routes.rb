@@ -1,6 +1,8 @@
 Shoelaces::Application.routes.draw do
   resources :somethings
 
+  match '/destroy/:id' => 'somethings#destroy'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

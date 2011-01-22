@@ -1,21 +1,20 @@
-<h1>Listing somethings</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @somethings.each do |something| %>
-  <tr>
-    <td><%= link_to 'Show', something %></td>
-    <td><%= link_to 'Edit', edit_something_path(something) %></td>
-    <td><%= link_to 'Destroy', something, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Something', new_something_path %>
+<div class="break">
+  <br><%= link_to 'Just Shoe It', new_something_path, :class => 'button' %>
+</div>
+<div id="somethings">
+  <% @somethings.each do |something| %>
+    <div class="somethingWrapper">
+      <h2>Shoelaces For <%= something.title %></h2>
+      <div class="thumb">
+        <%= image_tag something.something.url %>
+      </div>
+      <div class="controls">
+        <%= link_to 'Bigger', something %>&nbsp;|&nbsp;<%= link_to 'Edit', edit_something_path(something) %>&nbsp;|&nbsp;<a href="/destroy/<%= something.id %>">Delete</a>
+        <%#= link_to 'Destroy', something, :confirm => 'Are you sure?', :method => :delete %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="break">
+  &copy; <%= Date.today.year %> Reducify
+</div>

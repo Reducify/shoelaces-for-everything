@@ -1,6 +1,7 @@
-<h1>Editing something</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @something %> |
-<%= link_to 'Back', somethings_path %>
+<div id="edit">
+  <h1>Editing Your Shoelace</h1>
+  <%= render 'form' %>
+  <div class="controls">
+    <%= link_to 'Show', @something %>&nbsp;|&nbsp;<%= link_to 'Back', somethings_path %>
+  </div>
+</div>
