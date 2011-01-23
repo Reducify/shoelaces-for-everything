@@ -21,7 +21,7 @@
         <div id="shoelaceForm">
           <% (1..4).to_a.each do |number| %>
             <label>
-              <%= radio_button_tag 'shoelace', number %>
+              <%= f.radio_button 'shoelace', number %>
               <%= image_tag "shoelaces/thumbs/#{number}.png", :class => 'shoelaceThumb', :id => "shoelaceThumb#{number}" %>
             </label>
           <% end %>

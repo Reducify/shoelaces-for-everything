@@ -76,7 +76,7 @@
     return flashObj.stop(true).fadeIn().delay(5250).fadeOut();
   };
   shoelaceThumbs = function() {
-    return $('input[name=shoelace]').change(function() {
+    return $('input[type=radio]').change(function() {
       $('.shoelaceThumb').removeClass('selected');
       return $('#shoelaceThumb' + $(this).val()).addClass('selected');
     });
