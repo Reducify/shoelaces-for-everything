@@ -20,17 +20,19 @@ class SomethingUploader < CarrierWave::Uploader::Base
   # def default_url
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
+  
+  def add_shoelaces
+    
+  end
 
   # Process files as they are uploaded:
   # process :scale => [200, 300]
-   process :resize_to_fit => [900,9999]
+   #process :add_shoelaces
+   process :resize_to_limit => [900,9999]
+   process :convert => 'png'
    version :thumb do
      process :resize_to_fill => [255,255]
    end
-  #
-  # def scale(width, height)
-  #   # do something
-  # end
 
   # Create different versions of your uploaded files:
   # version :thumb do
@@ -44,8 +46,8 @@ class SomethingUploader < CarrierWave::Uploader::Base
    end
 
   # Override the filename of the uploaded files:
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  def filename
+     super.gsub(/\.(?:gif|png|jpg|jpeg)$/, '') + ".png"
+  end
 
 end
