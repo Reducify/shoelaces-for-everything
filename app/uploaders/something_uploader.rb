@@ -27,6 +27,7 @@ class SomethingUploader < CarrierWave::Uploader::Base
     end
     shoelace = Magick::Image.read(Rails.root.join('public', 'images', 'shoelaces', "#{which_shoelace}.png"))[0]
     manipulate! do |img|
+      shoelace.resize_to_fit! img.columns, img.rows
       img.composite! shoelace, Magick::CenterGravity, Magick::AtopCompositeOp
     end
   end
