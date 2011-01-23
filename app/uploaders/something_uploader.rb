@@ -23,10 +23,10 @@ class SomethingUploader < CarrierWave::Uploader::Base
 
   # Process files as they are uploaded:
   # process :scale => [200, 300]
-  # process :resize_to_fit => [800,800]
-  # version :thumb do
-  #   process :resize_to_fill => [200,200]
-  # end
+   process :resize_to_fit => [900,9999]
+   version :thumb do
+     process :resize_to_fill => [255,255]
+   end
   #
   # def scale(width, height)
   #   # do something

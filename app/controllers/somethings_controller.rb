@@ -66,11 +66,9 @@ class SomethingsController < ApplicationController
 
     respond_to do |format|
       if @something.update_attributes(params[:something])
-        format.html { redirect_to(@something, :notice => 'Your shoelace was updated.') }
-        format.xml  { head :ok }
+        redirect_to(@something, :notice => 'Your shoelace was updated.')
       else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @something.errors, :status => :unprocessable_entity }
+        render :action => "edit"
       end
     end
   end
@@ -81,10 +79,6 @@ class SomethingsController < ApplicationController
     @something = Something.find(params[:id])
     @something.destroy
 
-    # respond_to do |format|
-      # format.html { redirect_to(somethings_url) }
-      # format.xml  { head :ok }
-    # end
-    redirect_to '/somethings'
+    redirect_to somethings_url
   end
 end
