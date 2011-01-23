@@ -27,6 +27,7 @@ validate = ->
     if $('#edit').length == 1 || $('#new').length == 1
       title = $('#something_title').val()
       image = $('#something_something').val()
+      shoelace = $('input:radio:checked').val()
 
       if title == ''
         $('#titleError span').html('looks like you forgot your title').parent().fadeIn()
@@ -39,6 +40,12 @@ validate = ->
         error = true
       else
         $('#imageError').fadeOut()
+        
+      if !shoelace
+        $('#shoelaceError span').html('pick your shoelace').parent().fadeIn()
+        error = true
+      else
+        $('#shoelaceError').fadeOut()
 
     if error
       return false
@@ -69,6 +76,15 @@ flash = (type, message) ->
   # show and hide the notice
   flashObj.stop(true).fadeIn().delay(5250).fadeOut()
 
+shoelaceThumbs = ->
+  # on radiobutton change
+  $('input[name=shoelace]').change ->
+    # take off all the selected
+    $('.shoelaceThumb').removeClass('selected')
+    
+    # highlight the current shoelace
+    $('#shoelaceThumb' + $(this).val()).addClass('selected')
+
 
 # run on load
 $(window).load ->
@@ -76,3 +92,4 @@ $(window).load ->
   deleteItem()
   validate()
   checkForFlash()
+  shoelaceThumbs()

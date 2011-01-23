@@ -13,9 +13,9 @@
         <%= link_to 'Bigger', something %>
         <%# show the edit and delete links if you made it %>
         <% if something.ip_address == request.remote_ip %>
-          &nbsp;|&nbsp;<%= link_to 'Edit', edit_something_path(something) %>&nbsp;|&nbsp;<%= link_to 'Destroy', something, :confirm => 'Are you sure?', :method => :delete %>
+          &nbsp;|&nbsp;<%= link_to 'Edit', edit_something_path(something) %>&nbsp;|&nbsp;<%= link_to 'Delete', something, :confirm => 'Are you sure?', :method => :delete %>
         <% end %>
-        &nbsp;|&nbsp;by <%= something.name ? something.name : 'anon' %>
+        &nbsp;|&nbsp;by <%= something.name? ? something.name : 'anon' %>
       </div>
     </div>
   <% end %>
