@@ -10,12 +10,18 @@
         <%#= image_tag something.something.url %>
       </div>
       <div class="controls">
-        <%= link_to 'Bigger', something %>
-        <%# show the edit and delete links if you made it %>
-        <% if something.ip_address == request.remote_ip %>
-          &nbsp;|&nbsp;<%= link_to 'Edit', edit_something_path(something) %>&nbsp;|&nbsp;<%= link_to 'Delete', something, :confirm => 'Are you sure?', :method => :delete %>
-        <% end %>
-        &nbsp;|&nbsp;by <%= something.name? ? something.name : 'anon' %>
+        <div class="outer">
+          <div class="inner">
+            <span><%= link_to 'Bigger', something %></span>
+            <%# show the delete link if you made it %>
+            <% if something.ip_address == request.remote_ip %>
+              <span>|&nbsp;<%= link_to 'Delete', something, :confirm => 'You sure about that?', :method => :delete %></span>
+            <% end %>
+            <span>
+              |&nbsp;by <%= something.name? ? something.name : 'anon' %>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   <% end %>
