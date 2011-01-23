@@ -78,7 +78,7 @@ flash = (type, message) ->
 
 shoelaceThumbs = ->
   # on radiobutton change
-  $('input[name=shoelace]').change ->
+  $('input[type=radio]').change ->
     # take off all the selected
     $('.shoelaceThumb').removeClass('selected')
     

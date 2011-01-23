@@ -45,9 +45,10 @@ class SomethingsController < ApplicationController
   # POST /somethings
   # POST /somethings.xml
   def create
+    something = params[:something].delete :something
     @something = Something.new(params[:something])
     @something.ip_address = request.remote_ip
-    @something.something = params[:something][:something]
+    @something.something = something
     respond_to do |format|
       if @something.save
         format.html { redirect_to(@something, :notice => 'Your shoelace was successfully created.') }

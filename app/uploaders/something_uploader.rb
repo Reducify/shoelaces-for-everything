@@ -1,7 +1,6 @@
 # encoding: utf-8
 
 class SomethingUploader < CarrierWave::Uploader::Base
-
   # Include RMagick or ImageScience support:
   include CarrierWave::RMagick
   # include CarrierWave::ImageScience
@@ -22,16 +21,30 @@ class SomethingUploader < CarrierWave::Uploader::Base
   # end
   
   def add_shoelaces
-    
+    which_shoelace = self.model.shoelace.to_i
+    puts which_shoelace, "!!!!!!!!!!"
+    unless which_shoelace.between?(1,4)
+      which_shoelace = rand(4) + 1
+    end
+    shoelace = Magick::Image.read(Rails.root.join('public', 'images', 'shoelaces', "#{which_shoelace}.png"))[0]
+    manipulate! do |img|
+      img.composite! shoelace, Magick::CenterGravity, Magick::AtopCompositeOp
+    end
   end
 
   # Process files as they are uploaded:
   # process :scale => [200, 300]
    #process :add_shoelaces
-   process :resize_to_limit => [900,9999]
-   process :convert => 'png'
+    process :add_shoelaces
+    process :resize_to_limit => [900,9999]
+    process :convert => 'png'
+
+
+
    version :thumb do
+     process :add_shoelaces
      process :resize_to_fill => [255,255]
+     process :convert => 'png'
    end
 
   # Create different versions of your uploaded files:
