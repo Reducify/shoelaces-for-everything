@@ -22,7 +22,6 @@ class SomethingUploader < CarrierWave::Uploader::Base
   
   def add_shoelaces
     which_shoelace = self.model.shoelace.to_i
-    puts which_shoelace, "!!!!!!!!!!"
     unless which_shoelace.between?(1,4)
       which_shoelace = rand(4) + 1
     end

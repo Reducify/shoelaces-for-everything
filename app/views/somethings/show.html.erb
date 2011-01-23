@@ -1,12 +1,18 @@
 <div id="show">
   <h1>Shoelaces For <%= @something.title %></h1>
   <div class="controls">
-    <%# show the edit link only if you made it (ie, if the ips match) %>
-    <% if @something.ip_address == request.remote_ip %>
-      <%= link_to 'Edit', edit_something_path(@something) %>&nbsp;|&nbsp;
-    <% end %>
-    <%= link_to 'Back', somethings_path %>
-    &nbsp;|&nbsp;by <%= @something.name? ? @something.name : 'anon' %>
+    <div class="outer">
+      <div class="inner">
+        <%# show the edit link only if you made it (ie, if the ips match) %>
+        <% if @something.ip_address == request.remote_ip %>
+          <span><%= link_to 'Delete', @something, :confirm => 'You sure about that?', :method => :delete %>&nbsp;|</span>
+        <% end %>
+        <span><%= link_to 'Back', somethings_path %>&nbsp;|</span>
+        <span>
+          by <%= @something.name? ? @something.name : 'anon' %>
+        </span>
+      </div>
+    </div>
   </div>
   <div class="outer">
     <%= image_tag @something.something.url, :class => 'inner' %>
