@@ -1,5 +1,5 @@
 (function() {
-  var checkForFlash, deleteItem, flash, formSubmit, validate;
+  var checkForFlash, deleteItem, flash, formSubmit, shoelaceThumbs, validate;
   formSubmit = function() {
     $('.formSubmit').click(function() {
       $(this).parents('form').submit();
@@ -24,11 +24,12 @@
   };
   validate = function() {
     return $('form').submit(function() {
-      var error, image, title;
+      var error, image, shoelace, title;
       error = false;
       if ($('#edit').length === 1 || $('#new').length === 1) {
         title = $('#something_title').val();
         image = $('#something_something').val();
+        shoelace = $('input:radio:checked').val();
         if (title === '') {
           $('#titleError span').html('looks like you forgot your title').parent().fadeIn();
           error = true;
@@ -40,6 +41,12 @@
           error = true;
         } else {
           $('#imageError').fadeOut();
+        }
+        if (!shoelace) {
+          $('#shoelaceError span').html('pick your shoelace').parent().fadeIn();
+          error = true;
+        } else {
+          $('#shoelaceError').fadeOut();
         }
       }
       if (error) {
@@ -68,10 +75,17 @@
     flashObj.html(message);
     return flashObj.stop(true).fadeIn().delay(5250).fadeOut();
   };
+  shoelaceThumbs = function() {
+    return $('input[name=shoelace]').change(function() {
+      $('.shoelaceThumb').removeClass('selected');
+      return $('#shoelaceThumb' + $(this).val()).addClass('selected');
+    });
+  };
   $(window).load(function() {
     formSubmit();
     deleteItem();
     validate();
-    return checkForFlash();
+    checkForFlash();
+    return shoelaceThumbs();
   });
 }).call(this);
