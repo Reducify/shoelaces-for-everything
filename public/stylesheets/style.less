@@ -264,38 +264,61 @@ h2{
 
 form{
   .floatClear;
+  margin: 40px 0 0 0;
   text-shadow: 0 1px rgba(255,255,255,0.3);
 
+  // field labels
+  label{
+    color: @main - 20%;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 0.09em;
+    text-shadow: 0 1px rgba(255,255,255,0.5);
+  }
+
+  // file input
   #something_something{font-size: 18px;}
 
+  // text inputs
   .text{
     font-size: 25px;
     padding: 3px;
   }
 
+  // the "e.g." under title
   .example{
     font-size: 16px;
     color: #666;
     font-style: oblique;
     position: relative;
     top: 3px;
+    left: 2px;
   }
   
+  // submit and cancel button
   .actions{.floatClear;}
   
   // submit
   .button{margin: 20px 0 0 0;}
   
+  // cancel
   .cancel{
     position: relative;
     top: 35px;
     left: 15px;
   }
   
+  // error style
   .error{
     color: #f00;
     display: none;
   }
+}
+
+// wraps each option in the 'new' form
+.formSection{
+  .break;
+  margin: 0 0 30px 0;
 }
 
 #shoelaceForm{
@@ -321,5 +344,6 @@ form{
 }
 
 // shoelace thumbs in form
-.shoelaceThumb{border: 3px solid #666;}
+.shoelaceThumb{border: 3px solid #ccc;}
+.shoelaceThumb:hover{cursor: pointer;}
 .shoelaceThumb.selected{border: 3px solid @main;}

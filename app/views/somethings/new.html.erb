@@ -1,4 +1,42 @@
 <div id="new">
-  <h1>New Shoelace</h1>
-  <%= render 'form' %>
+  <%= form_for @something, :html => {:multipart => true} do |f| %>
+    <div id="inputs">
+      <%#= f.label :email %>
+      <%#= f.text_field :email %>
+      <%#= f.label :description %>
+      <%#= f.text_area :description %>
+      <div class="formSection">
+        <%= f.label :something, 'Choose an image:' %>
+        <br><%= f.file_field :something %>
+        <div id="imageError" class="error"><br><span></span></div>
+      </div>
+      <div class="formSection">
+        <%= f.label :title, 'This is a picture of:' %>
+        <br><%= f.text_field :title, :class => 'text' %>
+        <br><span class="example">e.g. cars, a banana split, canoeing</span>
+        <div id="titleError" class="error"><br><span></span></div>
+      </div>
+      <div class="formSection">
+        <label class="floatClear">Pick your shoelace:</label>
+        <div id="shoelaceForm">
+          <% (1..4).to_a.each do |number| %>
+            <label>
+              <%= radio_button_tag 'shoelace', number %>
+              <%= image_tag "shoelaces/thumbs/#{number}.png", :class => 'shoelaceThumb', :id => "shoelaceThumb#{number}" %>
+            </label>
+          <% end %>
+        </div>
+        <div id="shoelaceError" class="error"><br><span></span></div>
+      </div>
+      <div class="formSection">
+        <%= f.label :name, 'What\'s your name? (optional):' %>
+        <br><%= f.text_field :name, :class => 'text' %>
+      </div>
+    </div>
+    <div class="actions">
+      <a href="#" class="button formSubmit">Make Your Shoelace</a>
+      <%= link_to 'Cancel', somethings_path, :class => 'cancel' %>
+      <%= f.submit :style => 'display: none' %>
+    </div>
+  <% end %>
 </div>
