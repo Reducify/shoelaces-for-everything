@@ -2,30 +2,34 @@
   <br><%= link_to 'Just Shoe It', new_something_path, :class => 'button' %>
 </div>
 <div id="somethings">
-  <% @somethings.each do |something| %>
-    <div class="somethingWrapper">
-      <h2>Shoelaces For <%= something.title %></h2>
-      <div class="thumb">
-        <%= link_to image_tag(something.something.thumb.url), something %>
-        <%#= image_tag something.something.url %>
-      </div>
-      <div class="controls">
-        <div class="outer">
-          <div class="inner">
-            <span><%= link_to 'Bigger', something %></span>
-            <%# show the delete link if you made it %>
-            <% if something.ip_address == request.remote_ip %>
-              <span>|&nbsp;<%= link_to 'Delete', something, :confirm => 'You sure about that?', :method => :delete %></span>
-            <% end %>
-            <span>
-              |&nbsp;by <%= something.name? ? something.name : 'anon' %>
-            </span>
+  <% @somethings.reverse.each_slice(3).each do |somethingRow| %>
+    <div class="row">
+      <% somethingRow.each do |something| %>
+        <div class="somethingWrapper">
+          <h2>Shoelaces For <%= something.title %></h2>
+          <div class="thumb">
+            <%= link_to image_tag(something.something.thumb.url), something %>
+            <%#= image_tag something.something.url %>
+          </div>
+          <div class="controls">
+            <div class="outer">
+              <div class="inner">
+                <span><%= link_to 'Bigger', something %></span>
+                <%# show the delete link if you made it %>
+                <% if something.ip_address == request.remote_ip %>
+                  <span>|&nbsp;<%= link_to 'Delete', something, :confirm => 'You sure about that?', :method => :delete %></span>
+                <% end %>
+                <span>
+                  |&nbsp;by <%= something.name? ? something.name : 'anon' %>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     </div>
   <% end %>
 </div>
-<div class="break">
+<div class="copyright">
   &copy; <%= Date.today.year %> Reducify
 </div>
